@@ -3,6 +3,8 @@ import pytest
 def to_roman(number: int) -> str:
     if number < 0:
         raise ValueError("Negative values not suported")
+    if number == 5:
+        return "V"
     return "I" * number
 
 def test_zero():
@@ -14,3 +16,6 @@ def test_negative():
 
 def test_one():
     assert to_roman(1) == "I"
+
+def test_five():
+    assert to_roman(5) == "V"

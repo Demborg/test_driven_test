@@ -3,11 +3,15 @@ import pytest
 def to_roman(number: int) -> str:
     if number < 0:
         raise ValueError("Negative values not suported")
+    values = [5, 1]
+    names = ["V", "I"]
     out = ""
-    if number >= 5:
-        number -= 5
-        out += "V"
-    return  out + "I" * number
+    for i, _ in enumerate(values[:-1]):
+        while number >= values[i]:
+            out += names[i]
+            number -= values[i]
+
+    return out + names[-1] * number
 
 def test_zero():
     assert to_roman(0) == ""

@@ -1,23 +1,23 @@
 import pytest
 
+VALUES = [1000, 500, 100, 50, 10, 5, 1]
+NAMES = ["M", "D", "C", "L", "X", "V", "I"]
+
 def to_roman(number: int) -> str:
     if number < 0:
         raise ValueError("Negative values not suported")
-    values = [1000, 500, 100, 50, 10, 5, 1]
-    names = ["M", "D", "C", "L", "X", "V", "I"]
     out = ""
-    for i in range(len(values) - 1):
-        while number >= values[i]:
-            out += names[i]
-            number -= values[i]
-        for j in range(i + 1, len(values)):
-            diff = values[i] - values[j]
+    for i in range(len(VALUES) - 1):
+        while number >= VALUES[i]:
+            out += NAMES[i]
+            number -= VALUES[i]
+        for j in range(i + 1, len(VALUES)):
+            diff = VALUES[i] - VALUES[j]
             if number >= diff and j % 2 == 0:
-                out += names[j] + names[i]
+                out += NAMES[j] + NAMES[i]
                 number -= diff
                 break
-
-    return out + names[-1] * number
+    return out + NAMES[-1] * number
 
 def test_zero():
     assert to_roman(0) == ""

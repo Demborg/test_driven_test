@@ -20,7 +20,10 @@ def to_roman(number: int) -> str:
     return out + NAMES[-1] * number
 
 def from_roman(roman: str) -> int:
-    return 0
+    out = 0
+    for i in range(len(roman)):
+       out += VALUES[NAMES.index(roman[i])]
+    return out
 
 def test_zero():
     assert to_roman(0) == ""
@@ -46,3 +49,6 @@ def test_large():
 
 def test_from():
     assert from_roman("") == 0
+
+def test_from_I():
+    assert from_roman("I") == 1

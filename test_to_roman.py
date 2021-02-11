@@ -22,7 +22,10 @@ def to_roman(number: int) -> str:
 def from_roman(roman: str) -> int:
     out = 0
     for i in range(len(roman)):
-       out += VALUES[NAMES.index(roman[i])]
+        if i < len(roman) - 1 and VALUES[NAMES.index(roman[i])] < VALUES[NAMES.index(roman[i + 1])]:
+            out -= VALUES[NAMES.index(roman[i])]
+        else:
+            out += VALUES[NAMES.index(roman[i])]
     return out
 
 def test_zero():
@@ -52,3 +55,6 @@ def test_from():
 
 def test_from_I():
     assert from_roman("I") == 1
+
+def test_from_IV():
+    assert from_roman("IV") == 4

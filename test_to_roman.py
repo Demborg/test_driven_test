@@ -19,6 +19,9 @@ def to_roman(number: int) -> str:
                 break
     return out + NAMES[-1] * number
 
+def from_roman(roman: str) -> int:
+    return 0
+
 def test_zero():
     assert to_roman(0) == ""
 
@@ -40,3 +43,6 @@ def test_nine():
 
 def test_large():
     assert to_roman(1918) == "MCMXVIII"
+
+def test_from():
+    assert from_roman("") == 0

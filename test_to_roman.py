@@ -63,3 +63,6 @@ def test_from_IV():
 def test_from_broken():
     with pytest.raises(ValueError):
         from_roman("broken")
+
+def test_from_large():
+    assert from_roman("MCMXVIII") == 1918

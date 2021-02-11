@@ -19,14 +19,16 @@ def to_roman(number: int) -> str:
                 break
     return out + NAMES[-1] * number
 
+def _value_at(roman: str, index: int) -> int:
+    return VALUES[NAMES.index(roman[index])]
+
 def from_roman(roman: str) -> int:
     out = 0
     for i in range(len(roman)):
-        this_value = VALUES[NAMES.index(roman[i])]
-        if i < len(roman) - 1 and this_value < VALUES[NAMES.index(roman[i + 1])]:
-            out -= this_value
-        else:
-            out += this_value
+        this_value = _value_at(roman, i)
+        if i < len(roman) - 1 and this_value < _value_at(roman, i + 1):
+            this_value *= -1
+        out += this_value
     return out
 
 def test_zero():

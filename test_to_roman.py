@@ -59,3 +59,7 @@ def test_from_I():
 
 def test_from_IV():
     assert from_roman("IV") == 4
+
+def test_from_broken():
+    with pytest.raises(ValueError):
+        from_roman("broken")

@@ -3,19 +3,18 @@ from typing import Any
 import pytest
 
 class Queue():
-    empty = True
     data = None
 
     def is_empty(self) -> bool:
-        return self.empty
+        return self.data is None
 
     def push(self, item: Any) -> None:
         self.data = item
-        self.empty = False
 
     def pop(self) -> Any:
-        self.empty = True
-        return self.data
+        temp = self.data
+        self.data = None
+        return temp
 
 def test_is_empty():
     queue = Queue()

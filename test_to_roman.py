@@ -68,3 +68,10 @@ def test_from_broken():
 
 def test_from_large():
     assert from_roman("MCMXVIII") == 1918
+
+def test_from_liberty():
+    assert from_roman("MDCCLXXVI") == 1776
+
+def test_to_liberty():
+    assert to_roman(1776) == "MDCCLXXVI"
+

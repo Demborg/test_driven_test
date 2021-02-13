@@ -71,3 +71,12 @@ def test_push_push_pop_pop():
     queue.pop()
     queue.pop()
     assert queue.is_empty()
+
+def test_push_push_pop_pop_return():
+    queue = Queue()
+    queue.push(0)
+    queue.push(1)
+    assert queue.pop() == 0
+    queue.push(2)
+    assert queue.pop() == 1
+    

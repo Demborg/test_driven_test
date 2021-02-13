@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from typing import Any, Optional
-from _pytest.python_api import raises
 
 import pytest
 
@@ -79,4 +78,3 @@ def test_push_push_pop_pop_return():
     assert queue.pop() == 0
     queue.push(2)
     assert queue.pop() == 1
-    

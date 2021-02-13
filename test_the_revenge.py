@@ -1,31 +1,41 @@
-from typing import Any
+from dataclasses import dataclass
+from typing import Any, Optional
 from _pytest.python_api import raises
 
 import pytest
 
+@dataclass
+class LinkItem():
+    data: Any 
+    next_item: "LinkItem"
+
 class Queue():
-    data1 = None
-    data2 = None
+    first: Optional[LinkItem]
+    last: Optional[LinkItem]
+
+    def __init__(self) -> None:
+        self.first = None
+        self.last = None
 
     def is_empty(self) -> bool:
-        return self.data1 is None
+        return self.first is None
 
     def push(self, item: Any) -> None:
         if self.is_empty():
-            self.data1 = item
+            self.first = LinkItem(item, None)
+            self.last = self.first
             return
-        self.data2 = item
+        temp = LinkItem(item, None)
+        self.last.next_item = temp
+        self.last = temp
 
     def pop(self) -> Any:
         if self.is_empty():
-            raise IndexError("Can't pop from empty queue")
-        if self.data2 is not None:
-            temp = self.data2
-            self.data2 = None
+            raise IndexError("Can't pop from empty queue")        
         else:
-            temp = self.data1
-            self.data1 = None
-        return temp
+            temp = self.first
+            self.first = self.first.next_item
+        return temp.data
 
 def test_is_empty():
     queue = Queue()
